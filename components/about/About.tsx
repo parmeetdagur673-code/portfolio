@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Boxes, Layers3, Lightbulb } from "lucide-react";
 
 const cards = [
@@ -36,14 +36,25 @@ const cards = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
 
 export default function About() {
@@ -58,8 +69,7 @@ export default function About() {
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-
-        {/* ── Heading ──────────────────────────────── */}
+        {/* Heading */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -74,18 +84,22 @@ export default function About() {
 
           <h2 className="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Building Products That
-            <span className="block text-orange-500 mt-1">Solve Real Problems.</span>
+            <span className="block text-orange-500 mt-1">
+              Solve Real Problems.
+            </span>
           </h2>
 
           <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base lg:text-lg">
             I combine development, system design, and product thinking to build
             software that is{" "}
-            <span className="text-zinc-200 font-medium">scalable, maintainable,</span>{" "}
+            <span className="text-zinc-200 font-medium">
+              scalable, maintainable,
+            </span>{" "}
             and built for the real world.
           </p>
         </motion.div>
 
-        {/* ── Cards ────────────────────────────────── */}
+        {/* Cards */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -95,6 +109,7 @@ export default function About() {
         >
           {cards.map((card) => {
             const Icon = card.icon;
+
             return (
               <motion.div
                 key={card.number}
@@ -105,23 +120,31 @@ export default function About() {
                   group relative overflow-hidden rounded-2xl
                   border border-zinc-800/80 bg-zinc-900/40
                   p-6 sm:p-8 backdrop-blur-sm cursor-default
-                  transition-all duration-400
+                  transition-all duration-300
                   hover:border-orange-500/30
                   hover:shadow-[0_8px_40px_rgba(249,115,22,0.1)]
                 "
               >
-                {/* Hover gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${card.accent} opacity-0 transition-opacity duration-400 group-hover:opacity-100`} />
+                {/* Hover gradient */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${card.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                />
 
-                {/* Corner accent line */}
+                {/* Top line */}
                 <div className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-orange-500/60 to-transparent transition-all duration-500 group-hover:w-full" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${card.iconBg} transition-all duration-300 group-hover:scale-110`}>
-                      <Icon size={22} className={`${card.iconColor} transition-colors duration-300`} />
+                    <div
+                      className={`flex h-11 w-11 items-center justify-center rounded-xl ${card.iconBg} transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      <Icon
+                        size={22}
+                        className={`${card.iconColor} transition-colors`}
+                      />
                     </div>
-                    <span className="font-mono text-3xl font-bold text-zinc-800 transition-colors duration-300 group-hover:text-zinc-700 sm:text-4xl select-none">
+
+                    <span className="font-mono text-3xl font-bold text-zinc-800 transition-colors group-hover:text-zinc-700 sm:text-4xl select-none">
                       {card.number}
                     </span>
                   </div>
@@ -130,7 +153,7 @@ export default function About() {
                     {card.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-500 transition-colors duration-300 group-hover:text-zinc-400">
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-500 transition-colors group-hover:text-zinc-400">
                     {card.description}
                   </p>
                 </div>
